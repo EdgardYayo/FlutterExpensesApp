@@ -1,5 +1,6 @@
 import 'package:expense_tracker/expenses_list.dart';
 import 'package:expense_tracker/models/expense.dart';
+import 'package:expense_tracker/new_expense.dart';
 import 'package:flutter/material.dart';
 
 class Expenses extends StatefulWidget {
@@ -19,6 +20,10 @@ class _ExpensesState extends State<Expenses> {
     Expense(title: 'New MacOs', amount: 1000.89, date: DateTime.now(), category: Category.leisure),
   ];
 
+  void _openAddExpenseOverlay() {
+    showModalBottomSheet(context: context, builder: (ctx) => const NewExpense());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +37,7 @@ class _ExpensesState extends State<Expenses> {
           IconButton(
             padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
             hoverColor: Colors.white,
-            onPressed: () {},
+            onPressed: _openAddExpenseOverlay,
             icon: const Icon(Icons.add, color: Colors.purple,)
           )
         ],
